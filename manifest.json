@@ -1,13 +1,19 @@
 {
   "manifest_version": 3,
   "name": "Instagram - Unsend All My Messages",
-  "version": "1.0.0",
+  "version": "1.3.2",
   "description": "Adds a button inside Instagram DMs that unsends every message you sent in the open conversation.",
   "content_scripts": [
     {
-      "matches": ["https://www.instagram.com/*"],
-      "js": ["content.js"],
-      "css": ["panel.css"],
+      "matches": [
+        "https://www.instagram.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "panel.css"
+      ],
       "run_at": "document_idle"
     }
   ]

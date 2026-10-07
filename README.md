@@ -1,39 +1,53 @@
-# Instagram — Unsend All My Messages
+# Instagram — Delete All My Messages
 
-A Chrome extension that adds a small "Unsend all" panel to Instagram DMs.
-Open a conversation, press **Unsend my messages**, and it will unsend every
-message you sent in that chat, one by one — the same way you would by hand
-(hover → ⋯ → Unsend → confirm), just automated.
+A Chrome extension that unsends your messages throughout the open Instagram
+conversation. Version 1.3.2 has one start button and a Stop button.
 
-## How to install (one time)
+## Install
 
-1. Open Chrome and go to `chrome://extensions`
-2. Turn ON **Developer mode** (toggle in the top-right corner)
-3. Click **Load unpacked** (top-left)
-4. Pick this folder: `C:\Users\shrey\instagram-unsend-extension`
-5. Done — you don't need to pin anything to the toolbar
+1. Open `chrome://extensions` in Chrome.
+2. Enable **Developer mode**.
+3. Click **Load unpacked** and select `C:\Users\shrey\instagram-unsend-extension`.
 
-## How to use
+## Use
 
-1. Go to instagram.com and open the conversation you want to clean out
-2. A small white panel appears in the bottom-right corner of the page
-3. Click **Unsend my messages** and confirm the warning
-4. Leave the tab open and visible while it works — it shows a running count
-5. Click **Stop** any time to pause; navigating away also stops it
+1. Open the Instagram conversation you want to clean out.
+2. Click **Delete all my messages** and confirm the permanent deletion warning.
+3. Keep the tab open and visible while the extension works.
+4. Click **Stop** to cancel. Switching conversations also cancels the run.
 
-It automatically scrolls up to load older messages and keeps going until
-there is nothing left of yours to unsend.
+There is no preliminary scan. The extension starts at the newest messages,
+deletes your messages in that loaded batch, scrolls up, and repeats. It waits for
+older history to load and preserves its position when Instagram inserts another
+batch. The panel reports the current batch and total messages unsent.
 
-## Good to know
+Instagram's message menus are still operated individually. The extension waits
+for each message to disappear, then paces the next action while the page settles.
+Other participants' messages remain. No conversation contents are saved.
 
-- **Unsending is permanent** and removes the message for BOTH people.
-  There is no undo.
-- It goes at roughly one message every 1.5–2 seconds on purpose. Going
-  faster can make Instagram temporarily block actions on your account.
-  For a very long conversation, expect it to take a while.
-- Your Instagram language must be set to **English** (it looks for the
-  word "Unsend" on screen).
-- Instagram changes its website now and then. If the button one day does
-  nothing, the extension likely needs a small update to match the new page.
-- Automating actions like this is technically against Instagram's terms
-  of service — use it on your own account, at your own pace.
+Unsending removes your messages for both people and cannot be undone. An action
+already sent to Instagram may complete even if you press Stop immediately after.
+
+## Update
+
+After the extension files change, click its **Reload** arrow on
+`chrome://extensions`, then refresh Instagram. The panel should show **v1.3.2**.
+
+## If it stops
+
+The Instagram interface must be in English. The extension waits for menus that
+initially show Loading. If Unsend never appears, it stops and reports the available
+menu actions instead of silently skipping that message. Loading failures and
+unconfirmed removals also stop with an error.
+
+Reaching the oldest available boundary means Instagram stopped providing more
+history at that time; it is not a server-side guarantee that all historical
+messages were returned. If Instagram withheld history, retry later.
+
+Menu opening retries up to three times, reacquiring the same message after scrolling
+and rerenders. Only opening the menu is retried; an unconfirmed deletion stops
+the run. Successfully unsent messages remain removed if a later action fails.
+
+Confirmation is matched by the Unsend message? heading and Cancel action,
+then checked against the topmost visible control. Retained options menus are
+never treated as confirmation. The confirmation is clicked once; failures stop.
