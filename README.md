@@ -1,4 +1,4 @@
-# Instagram — Delete All My Messages
+# Instagram - Delete All My Messages
 
 A Chrome extension that unsends your messages throughout the open Instagram
 conversation. Version 1.3.2 has one start button and a Stop button.
